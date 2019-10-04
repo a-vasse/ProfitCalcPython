@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Profit Calculator</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='profitcalc.css') }}">
+</head>
+<body>
+{% if error %}
+<div class="error">{{ error }}</div>
+{% endif %}
+{% if result %}
+<div class="result">
+<p><strong>Revenue:</strong> ${{ result.revenue }}</p>
+<p><strong>Expenses:</strong> ${{ result.expenses }}</p>
+{% if result.net < 0 %}
+<p class="loss">
+<strong>Loss:</strong>
+{% else %}
+<p class="profit">
+<strong>Profit:</strong>
+{% endif %}
+${{ result.net.copy_abs() }}</p>
+<p><a href="">&larr; Back</a></p>
+</div>
+{% endif %}
+{% if show_form %}
+<form method="post">
+
+<label for="revenue">Revenue:</label>
+<input id="revenue" name="revenue" type="number" class="currency" step="{{ g.currency_places }}" min="0" value="{{ request.form.get('revenue', '') }}" required>
+
+<label for="expenses">Expenses:</label>
+<input id="expenses" name="expenses" type="number" class="currency" step="{{ g.currency_places }}" min="0" value="{{ request.form.get('expenses', '') }}" required>
+
+<script async defer src="{{ url_for('static', filename='currency-input.js') }}"></script>
+<input type="submit" value="Calculate Profit">
+
+</form>
+{% endif %}
+</body>
+</html>

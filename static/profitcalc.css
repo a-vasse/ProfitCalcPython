@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+
+html {
+	font: 1.5em 'Karla', sans-serif;
+}
+
+body {
+	margin: 3rem auto;
+	width: fit-content;
+}
+
+form {
+	display: grid;
+	grid-template-areas:
+		'rl rf'
+		'el ef'
+		's s';
+	grid-template-columns: 5rem 10rem;
+	grid-row-gap: 0.25rem;
+}
+
+input {
+	font: inherit;
+}
+
+input.currency {
+	text-align: right;
+}
+
+input[type="submit"] {
+	grid-area: s;
+}
+
+.result p {
+	margin: 0.5rem 0;
+}
+.result strong {
+	display: inline-block;
+	width: 5rem;
+}
+.result .profit {
+	border-top: 0.1rem solid #0a4;
+}
+.result .loss {
+	border-top: 0.1rem solid #c20;
+}
+
+.error {
+	color: #000;
+	background: #fa4;
+	padding: 1rem;
+	margin-bottom: 1rem;
+}
